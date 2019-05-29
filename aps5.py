@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 n = 5 # número do grupo! IMPORTANTE MUDAR PARA O CORRETO
 l_x = 30 #metros
 l_y = 20 #metros
-delta_x = 0.5
-delta_y = 0.5
+delta_x = 1.13
+delta_y = 1
 delta_t = 0.5
 tempo_despejo = 3 #segundos
 tempo_total = 10 * tempo_despejo #segundos
@@ -32,9 +32,9 @@ def solve_matrix(act_matrix, nx, ny):
             vel_v = alpha*np.sin((np.pi/5)*i)
             
             nxt_matrix[i][j] = act_matrix[i][j] + delta_t * (qzinho - vel_u*(
-            (act_matrix[i+1][j] - act_matrix[i-1][j])/2*delta_x) - vel_v*((act_matrix[i][j+1] - act_matrix[i][j-1])/2*delta_y) +
-            k * ((act_matrix[i+1][j] - 2*act_matrix[i][j] + act_matrix[i-1][j])/delta_x**2) +
-            k * ((act_matrix[i][j+1] - 2*act_matrix[i][j] + act_matrix[i][j-1])/delta_y**2))
+                (act_matrix[i+1][j] - act_matrix[i-1][j])/2*delta_x) - vel_v*((act_matrix[i][j+1] - act_matrix[i][j-1])/2*delta_y) +
+                k * ((act_matrix[i+1][j] - 2*act_matrix[i][j] + act_matrix[i-1][j])/delta_x**2) +
+                k * ((act_matrix[i][j+1] - 2*act_matrix[i][j] + act_matrix[i][j-1])/delta_y**2))
             if nxt_matrix[i][j] < 0:
                 nxt_matrix[i][j] = 0
 
@@ -46,6 +46,6 @@ for qq in range(1000):
 
 print(act_matrix)
 
-#plt.imshow(act_matrix)
-#plt.colorbar()
-#plt.show()
+plt.imshow(act_matrix)
+plt.colorbar()
+plt.show()
