@@ -9,7 +9,7 @@ l_y = 20 #metros
 
 #DÚVIDA: Problema com quando del x e del y é menor do que 0.5
 delta_x = 1
-delta_y = 0.6
+delta_y = 1
 delta_t = 0.1
 
 tempo_despejo = 3 #segundos
