@@ -6,28 +6,27 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 n = 10 
-l_x = 20 #metros
+l_x = 30 #metros
 l_y = 30 #metros
 
 
 
 delta_x = 1
 delta_y = 1
-delta_t = 0.1
+delta_t = 0.05
 
-tempo_despejo = 3 #segundos
-tempo_total = 10 * tempo_despejo #segundos
+tempo_despejo = 2 #segundos
+tempo_total = 5 #segundos
 k = 1 #m^2/s
 alpha = 1 #m/s
-qezao = 100 #kg/ms
-a = n/ 1.4 #coordenada x do ponto de derramamento do líquido
-b = 60/(n+5) #coordenada y do ponto de derramamento do líquido
+qezao = 80 #kg/ms
+a = 15 #coordenada x do ponto de derramamento do líquido
+b = 15 #coordenada y do ponto de derramamento do líquido
 
 qzinho = qezao/(delta_x*delta_y)
 
-act_x = int(l_x/delta_x)*3
-act_y = int(l_y/delta_y)*3
-
+act_x = int(l_x/delta_x)
+act_y = int(l_y/delta_y)
 
 def build_matrix(nx, ny):
     empty_matrix = np.zeros((ny, nx))
@@ -44,8 +43,8 @@ def solve_matrix(act_matrix, nx, ny, instant):
     for i in range (ny):
         for j in range (nx):
             if (nxt_matrix[i][j] == -1):
-                vel_v = alpha
-                vel_u = alpha*np.sin((np.pi/5)*i)
+                vel_u = 0
+                vel_v = 1
                 if(instant <= int(tempo_despejo/delta_t) and (i == int(a)) and (j == int(b))):
 
                     nxt_matrix[i][j] = act_matrix[i][j] + delta_t * (qzinho - vel_u*(
@@ -105,7 +104,7 @@ ani = animation.FuncAnimation(img,updatefig,interval=5,blit=True)
 cbar = img.colorbar(im, ticks=[0, 0.5, 1])
 cbar.ax.set_yticklabels(['0', '0.5', '> 1']) 
 
-plt.axis([0, 30, 30, 0])
+plt.axis([0, 30, 0, 30])
 plt.clim(0,1)
 plt.legend()
 
