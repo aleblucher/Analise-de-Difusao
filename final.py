@@ -83,6 +83,15 @@ act_matrix = build_matrix(act_x, act_y)
 list = []
 for instant in range(int(tempo_total/delta_t)):
     act_matrix = solve_matrix(act_matrix, act_x, act_y,instant)
+    if (instant%5==0):
+        plt.imshow(act_matrix)
+        plt.axis([0, 30, 30, 00])
+        plt.xlabel('m')
+        plt.ylabel('m')
+        plt.colorbar()
+        plt.clim(0,1)
+        plt.savefig('books_read_' + str(instant) + '.png')
+        plt.close()
     list.append(act_matrix)
 
 def moments(i):
@@ -108,5 +117,5 @@ cbar.ax.set_yticklabels(['0', '0.5', '> 1'])
 plt.axis([0, 30, 30, 0])
 plt.clim(0,1)
 plt.legend()
-
 plt.show()
+plt.close()
